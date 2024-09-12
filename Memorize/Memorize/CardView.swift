@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CardView: View {
+    let content: String
     @State var isFaceUp: Bool = false
     
     //Views are immutabel
@@ -19,13 +20,12 @@ struct CardView: View {
             if isFaceUp{
                 base_rect.fill(.white)
                 base_rect.strokeBorder(lineWidth: 2)
-                Text("😜").font(.largeTitle)
+                Text(content).font(.largeTitle)
             } else{
                 base_rect.fill()
             }
           
         }
-        .padding()
         .foregroundColor(.orange)
         .onTapGesture {
             isFaceUp.toggle()
@@ -34,5 +34,5 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(isFaceUp: true)
+    CardView(content: "👀", isFaceUp: true)
 }
