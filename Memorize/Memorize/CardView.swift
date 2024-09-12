@@ -8,25 +8,28 @@
 import SwiftUI
 
 struct CardView: View {
-    var isFaceUp: Bool = false
+    @State var isFaceUp: Bool = false
     
+    //Views are immutabel
     var body: some View {
         ZStack {
+            // local variables and type inference
+            let base_rect = RoundedRectangle(cornerRadius: 12)
+            
             if isFaceUp{
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(.white)
-                RoundedRectangle(cornerRadius: 12)
-                    .strokeBorder(lineWidth: 2)
-               
-                Text("😜")
-                    .font(.largeTitle)
+                base_rect.fill(.white)
+                base_rect.strokeBorder(lineWidth: 2)
+                Text("😜").font(.largeTitle)
             } else{
-                Rectangle()
+                base_rect.fill()
             }
           
         }
         .padding()
         .foregroundColor(.orange)
+        .onTapGesture {
+            isFaceUp.toggle()
+        }
     }
 }
 
